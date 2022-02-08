@@ -2,7 +2,7 @@
     package="com.sundar.cookingforyou">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="cookingforyou"
+        android:label="Cooking For You"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

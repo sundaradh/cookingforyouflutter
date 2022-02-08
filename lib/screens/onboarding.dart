@@ -13,7 +13,7 @@ class _OnboardingState extends State<Onboarding> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          backgroundColor: const Color(0xFFEE8D0),
+          backgroundColor: const Color(0x0ffee8d0),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

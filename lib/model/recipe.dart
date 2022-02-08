@@ -37,9 +37,18 @@ class Recipe {
     );
   }
 
-  static List<Recipe> recipesFromSnapshot(List snapshot) {
-    return snapshot.map((data) {
-      return Recipe.fromJson(data);
+  static List<Recipe> recipesFromSnapshot(List snapshot, String query) {
+    return snapshot.map((json) => Recipe.fromJson(json)).where((book) {
+      final nameLower = book.name.toLowerCase();
+      final categoryLower = book.category.toLowerCase();
+      final caloryLower = book.calories_food.toLowerCase();
+      final cookingtimeLower = book.totalTime.toLowerCase();
+      final searchLower = query.toLowerCase();
+
+      return nameLower.contains(searchLower) ||
+          categoryLower.contains(searchLower) ||
+          caloryLower.contains(searchLower) ||
+          cookingtimeLower.contains(searchLower);
     }).toList();
   }
 

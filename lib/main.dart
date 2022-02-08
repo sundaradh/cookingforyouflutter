@@ -1,8 +1,4 @@
-import 'dart:ui';
-
-import 'package:cookingforyou/screens/onboarding.dart';
 import 'package:cookingforyou/screens/splash_screen.dart';
-import 'package:cookingforyou/widgets/home.dart';
 import 'package:flutter/material.dart';
 
 void main() {

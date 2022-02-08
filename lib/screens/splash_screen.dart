@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
               "assets/on.png",
               width: MediaQuery.of(context).size.width / 2,
             ),
-            Center(
+            const Center(
               child: Text(
                 "Cooking For You",
                 style: TextStyle(
@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
             ),
-            SpinKitSquareCircle(
+            const SpinKitSquareCircle(
               color: Color(0xFFA23522),
               size: 25.0,
             ),
