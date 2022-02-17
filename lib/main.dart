@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodyText2: TextStyle(
             color: Colors.white,
           ),
         ),
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
