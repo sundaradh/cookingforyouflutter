@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cookingforyou/screens/signup.dart';
 import 'package:cookingforyou/widgets/home.dart';
 import 'package:http/http.dart' as http;
 
@@ -41,7 +42,7 @@ class _LoginState extends State<Login> {
                   Container(
                     height: MediaQuery.of(context).size.height / 3,
                     child: Image(
-                      image: AssetImage("images/login.jpg"),
+                      image: AssetImage("assets/on.png"),
                     ),
                   ),
                   SizedBox(
@@ -97,7 +98,7 @@ class _LoginState extends State<Login> {
                           return "Please Enter a Password";
                         }
                         if (value.length < 8) {
-                          return "Password Length must be more than 5";
+                          return "Password Length must be more than 8";
                         } else {
                           return null;
                         }
@@ -113,7 +114,7 @@ class _LoginState extends State<Login> {
                     width: 150,
                     child: RaisedButton(
                       color: const Color(0xFFA23522),
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       onPressed: () {
                         if (_fromKey.currentState!.validate()) {
@@ -147,8 +148,8 @@ class _LoginState extends State<Login> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                       onPressed: () {
-                        // Navigator.of(context).pushReplacement(
-                        //     MaterialPageRoute(builder: (context) => ));
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) => Signup()));
                       },
                       borderSide: BorderSide(color: Colors.black),
                       child: Text("Sign Up"),
@@ -178,7 +179,9 @@ class _LoginState extends State<Login> {
     if (response.body.isNotEmpty) {
       var data = jsonDecode(response.body);
       print("DATA:$data");
-      if (data.length == 1) {
+      data = data.toString();
+      data = data.substring(1, 4);
+      if (data == 'key') {
         final SharedPreferences sharedPreferences =
             await SharedPreferences.getInstance();
         sharedPreferences.setString("username", _username.text);

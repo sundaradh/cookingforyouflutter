@@ -1,7 +1,8 @@
 import 'dart:async';
-
+import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:cookingforyou/model/recipe.api.dart';
 import 'package:cookingforyou/model/recipe.dart';
+import 'package:cookingforyou/widgets/categories.dart';
 import 'package:cookingforyou/widgets/recipe_card.dart';
 import 'package:cookingforyou/widgets/search.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,50 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<CarouselItem> itemList = [
+    CarouselItem(
+      image: const NetworkImage(
+        'https://img.dtcn.com/image/themanual/pexels-melanie-dompierre-1707917-1-500x500.jpg',
+      ),
+      boxDecoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: FractionalOffset.bottomCenter,
+          end: FractionalOffset.topCenter,
+          colors: [
+            Colors.blueAccent.withOpacity(1),
+            Colors.black.withOpacity(.3),
+          ],
+          stops: const [0.0, 1.0],
+        ),
+      ),
+      title:
+          'Push your creativity to its limits by reimagining this classic puzzle!',
+      titleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.white,
+      ),
+      leftSubtitle: '\$51,046 in prizes',
+      rightSubtitle: '4882 participants',
+      rightSubtitleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.black,
+      ),
+      onImageTap: (i) {},
+    ),
+    CarouselItem(
+      image: const NetworkImage(
+        'https://images.pexels.com/photos/2418486/pexels-photo-2418486.jpeg',
+      ),
+      title: '@coskuncay published flutter_custom_carousel_slider!',
+      titleTextStyle: const TextStyle(
+        fontSize: 12,
+        color: Colors.white,
+      ),
+      leftSubtitle: '11 Feb 2022',
+      rightSubtitle: 'v1.0.0',
+      onImageTap: (i) {},
+    ),
+  ];
   late List<Recipe> recipes = [];
   bool _isLoading = true;
   String query = '';
@@ -69,6 +114,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    recipes = List.from(recipes.reversed);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -78,18 +124,31 @@ class _HomePageState extends State<HomePage> {
             SizedBox(width: 10),
             Text(
               'Cooking For You',
+              // ignore: prefer_const_constructors
               style: TextStyle(fontFamily: "ConcertOne"),
             ),
           ],
         ),
         backgroundColor: Color(0xFFA23522),
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-              children: [
-                buildSearch(),
-                Expanded(
+      body: Column(
+        children: [
+          buildSearch(),
+          CustomCarouselSlider(
+            items: itemList,
+            height: 150,
+            subHeight: 50,
+            width: MediaQuery.of(context).size.width * .9,
+            autoplay: true,
+            showText: false,
+            showSubBackground: false,
+            indicatorShape: BoxShape.circle,
+            selectedDotColor: Colors.red,
+            unselectedDotColor: Colors.white,
+          ),
+          _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Expanded(
                   child: ListView.builder(
                     itemCount: recipes.length,
                     itemBuilder: (context, index) {
@@ -104,8 +163,8 @@ class _HomePageState extends State<HomePage> {
                     },
                   ),
                 ),
-              ],
-            ),
+        ],
+      ),
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -113,22 +172,13 @@ class _HomePageState extends State<HomePage> {
             Image.asset('assets/on.png'),
             // body
 
-            Divider(),
-
+            const Divider(),
             InkWell(
-              onTap: () {},
-              child: ListTile(
-                title: Text("My account"),
-                leading: Icon(
-                  Icons.person,
-                  color: Colors.red,
-                ),
-              ),
-            ),
-            Divider(),
-            InkWell(
-              onTap: () {},
-              child: ListTile(
+              onTap: () {
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const Categories()));
+              },
+              child: const ListTile(
                 title: Text("Categories"),
                 leading: Icon(
                   Icons.dashboard,
@@ -136,11 +186,11 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Divider(),
+            const Divider(),
 
             InkWell(
               onTap: () {},
-              child: ListTile(
+              child: const ListTile(
                 title: Text("Setting"),
                 leading: Icon(
                   Icons.settings,
@@ -150,7 +200,7 @@ class _HomePageState extends State<HomePage> {
             ),
             InkWell(
               onTap: () {},
-              child: ListTile(
+              child: const ListTile(
                 title: Text("About us"),
                 leading: Icon(
                   Icons.help,
@@ -178,7 +228,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: () {}),
             InkWell(
               onTap: () async {},
-              child: ListTile(
+              child: const ListTile(
                 title: Text("Logout"),
                 leading: Icon(
                   Icons.logout,
