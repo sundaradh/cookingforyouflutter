@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'package:cookingforyou/widgets/categories.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:cookingforyou/model/recipe.api.dart';
 import 'package:cookingforyou/model/recipe.dart';
-import 'package:cookingforyou/widgets/categories.dart';
+
 import 'package:cookingforyou/widgets/recipe_card.dart';
 import 'package:cookingforyou/widgets/search.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget buildSearch() => SearchWidget(
         text: query,
-        hintText: 'Recipe,Category,Cooking Time or Calories',
+        hintText: 'Recipe,Cooking Time or Calories',
         onChanged: searchRecipe,
       );
   Future searchRecipe(String query) async => debounce(() async {
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
         });
       });
   int currentindex = 0;
-  var name = "Home";
+
   @override
   Widget build(BuildContext context) {
     final screen = [home(context), home(context), home(context)];
@@ -144,8 +145,8 @@ class _HomePageState extends State<HomePage> {
             const Divider(),
             InkWell(
               onTap: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const Categories()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const Category()));
               },
               child: const ListTile(
                 title: Text("Categories"),
@@ -232,13 +233,6 @@ class _HomePageState extends State<HomePage> {
         onTap: (index) {
           setState(() {
             currentindex = index;
-            if (index == 0) {
-              name = "Home";
-            } else if (index == 1) {
-              name = "Favorite";
-            } else if (index == 2) {
-              name = "Setting";
-            }
           });
         },
       ),

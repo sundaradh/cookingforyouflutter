@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-class Recipe {
+class cRecipe {
   final String name;
   final String image;
   final String totalTime;
@@ -10,7 +10,7 @@ class Recipe {
   final String video;
   final String calories_food;
 
-  Recipe({
+  cRecipe({
     required this.name,
     required this.image,
     required this.totalTime,
@@ -21,8 +21,8 @@ class Recipe {
     required this.calories_food,
   });
 
-  factory Recipe.fromJson(dynamic json) {
-    return Recipe(
+  factory cRecipe.fromJson(dynamic json) {
+    return cRecipe(
       name: json['name'] as String,
       image: json['image'] as String,
       totalTime: json['cooking_time'] as String,
@@ -34,8 +34,8 @@ class Recipe {
     );
   }
 
-  static List<Recipe> recipesFromSnapshot(List snapshot, String query) {
-    return snapshot.map((json) => Recipe.fromJson(json)).where((book) {
+  static List<cRecipe> recipesFromSnapshot(List snapshot, String query) {
+    return snapshot.map((json) => cRecipe.fromJson(json)).where((book) {
       final nameLower = book.name.toLowerCase();
 
       final caloryLower = book.calories_food.toLowerCase();
@@ -50,6 +50,6 @@ class Recipe {
 
   @override
   String toString() {
-    return 'Recipe {image: $image, rating:"5", totalTime: $totalTime}';
+    return 'cRecipe {image: $image, rating:"5", totalTime: $totalTime}';
   }
 }
