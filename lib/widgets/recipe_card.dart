@@ -32,7 +32,7 @@ class RecipeCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         width: MediaQuery.of(context).size.width,
-        height: 180,
+        height: 200,
         decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(15),
@@ -91,7 +91,7 @@ class RecipeCard extends StatelessWidget {
                         Icon(
                           Icons.star,
                           color: Colors.yellow,
-                          size: 18,
+                          size: 20,
                         ),
                         SizedBox(width: 7),
                         Text("5"),
@@ -110,7 +110,7 @@ class RecipeCard extends StatelessWidget {
                         Icon(
                           Icons.food_bank_sharp,
                           color: Colors.yellow,
-                          size: 18,
+                          size: 20,
                         ),
                         SizedBox(width: 7),
                         Text(calories),
@@ -129,7 +129,7 @@ class RecipeCard extends StatelessWidget {
                         Icon(
                           Icons.schedule,
                           color: Colors.yellow,
-                          size: 18,
+                          size: 20,
                         ),
                         SizedBox(width: 7),
                         Text(cookTime),
@@ -180,7 +180,7 @@ class _RecipeViewState extends State<RecipeView> {
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                     width: MediaQuery.of(context).size.width,
-                    height: 180,
+                    height: 200,
                     decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(15),
@@ -215,13 +215,13 @@ class _RecipeViewState extends State<RecipeView> {
                     style: TextStyle(
                         color: Color(0xFFA23522),
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 30),
                   ),
                   Text(
                     a.description,
                     style: TextStyle(
                       color: Color(0xFFA23522),
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                   ),
                   Text(
@@ -229,13 +229,13 @@ class _RecipeViewState extends State<RecipeView> {
                     style: TextStyle(
                         color: Color(0xFFA23522),
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 30),
                   ),
                   Text(
                     a.ingredients,
                     style: TextStyle(
                       color: Color(0xFFA23522),
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                   ),
                   Text(
@@ -243,13 +243,13 @@ class _RecipeViewState extends State<RecipeView> {
                     style: TextStyle(
                         color: Color(0xFFA23522),
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 30),
                   ),
                   Text(
                     a.instructions,
                     style: TextStyle(
                       color: Color(0xFFA23522),
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                   ),
                   Text(
@@ -257,13 +257,13 @@ class _RecipeViewState extends State<RecipeView> {
                     style: TextStyle(
                         color: Color(0xFFA23522),
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 30),
                   ),
                   Text(
                     a.totalTime,
                     style: TextStyle(
                       color: Color(0xFFA23522),
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                   ),
                   Text(
@@ -271,14 +271,14 @@ class _RecipeViewState extends State<RecipeView> {
                     style: TextStyle(
                         color: Color(0xFFA23522),
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 30),
                   ),
                   Text(
                     "Youtube Video",
                     style: TextStyle(
                         color: Color(0xFFA23522),
                         fontWeight: FontWeight.bold,
-                        fontSize: 20),
+                        fontSize: 30),
                   ),
                   YoutubePlayer(
                     controller: YoutubePlayerController(

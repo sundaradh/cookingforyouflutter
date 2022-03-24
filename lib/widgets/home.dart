@@ -111,9 +111,11 @@ class _HomePageState extends State<HomePage> {
           this.recipes = recipes;
         });
       });
-
+  int currentindex = 0;
+  var name = "Home";
   @override
   Widget build(BuildContext context) {
+    final screen = [home(context), home(context), home(context)];
     recipes = List.from(recipes.reversed);
     return Scaffold(
       appBar: AppBar(
@@ -129,42 +131,9 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-        backgroundColor: Color(0xFFA23522),
+        backgroundColor: const Color(0xFFA23522),
       ),
-      body: Column(
-        children: [
-          buildSearch(),
-          CustomCarouselSlider(
-            items: itemList,
-            height: 150,
-            subHeight: 50,
-            width: MediaQuery.of(context).size.width * .9,
-            autoplay: true,
-            showText: false,
-            showSubBackground: false,
-            indicatorShape: BoxShape.circle,
-            selectedDotColor: Colors.red,
-            unselectedDotColor: Colors.white,
-          ),
-          _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Expanded(
-                  child: ListView.builder(
-                    itemCount: recipes.length,
-                    itemBuilder: (context, index) {
-                      return RecipeCard(
-                        index: index,
-                        recipe: recipes,
-                        title: recipes[index].name,
-                        cookTime: recipes[index].totalTime,
-                        thumbnailUrl: recipes[index].image,
-                        calories: recipes[index].calories_food,
-                      );
-                    },
-                  ),
-                ),
-        ],
-      ),
+      body: screen[currentindex],
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -239,6 +208,77 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        iconSize: 20.0,
+        currentIndex: currentindex,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Color(0xFFA23522),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'favorite',
+            backgroundColor: Color(0xFFA23522),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+            backgroundColor: Color(0xFFA23522),
+          ),
+        ],
+        selectedItemColor: Colors.amber[800],
+        onTap: (index) {
+          setState(() {
+            currentindex = index;
+            if (index == 0) {
+              name = "Home";
+            } else if (index == 1) {
+              name = "Favorite";
+            } else if (index == 2) {
+              name = "Setting";
+            }
+          });
+        },
+      ),
+    );
+  }
+
+  Widget home(BuildContext context) {
+    return Column(
+      children: [
+        buildSearch(),
+        CustomCarouselSlider(
+          items: itemList,
+          height: 150,
+          subHeight: 50,
+          width: MediaQuery.of(context).size.width * .9,
+          autoplay: true,
+          showText: false,
+          showSubBackground: false,
+          indicatorShape: BoxShape.circle,
+          selectedDotColor: Colors.red,
+          unselectedDotColor: Colors.white,
+        ),
+        _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Expanded(
+                child: ListView.builder(
+                  itemCount: recipes.length,
+                  itemBuilder: (context, index) {
+                    return RecipeCard(
+                      index: index,
+                      recipe: recipes,
+                      title: recipes[index].name,
+                      cookTime: recipes[index].totalTime,
+                      thumbnailUrl: recipes[index].image,
+                      calories: recipes[index].calories_food,
+                    );
+                  },
+                ),
+              ),
+      ],
     );
   }
 }
