@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:cookingforyou/widgets/categories.dart';
+import 'package:cookingforyou/widgets/categoriesviews.dart';
+import 'package:cookingforyou/widgets/category.dart';
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:cookingforyou/model/recipe.api.dart';
 import 'package:cookingforyou/model/recipe.dart';
@@ -146,7 +147,7 @@ class _HomePageState extends State<HomePage> {
             InkWell(
               onTap: () {
                 Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const Category()));
+                    MaterialPageRoute(builder: (context) => Categorylist()));
               },
               child: const ListTile(
                 title: Text("Categories"),
