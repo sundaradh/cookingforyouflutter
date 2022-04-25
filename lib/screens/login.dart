@@ -24,14 +24,6 @@ class _LoginState extends State<Login> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text(
-            "Login",
-            style: TextStyle(color: Colors.black),
-          ),
-          centerTitle: true,
-          backgroundColor: const Color(0xFFA23522),
-        ),
         body: Center(
           child: SingleChildScrollView(
             child: Form(

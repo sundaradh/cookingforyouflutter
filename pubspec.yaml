@@ -36,14 +36,16 @@ dependencies:
   cupertino_icons: ^1.0.2
   cached_network_image: ^3.2.0
   youtube_player_flutter: ^8.0.0
-  url_launcher: ^6.0.18
+  url_launcher: ^6.1.0
   js: ^0.6.3
   shared_preferences: ^2.0.12
   flutter_lints: ^1.0.0
   http: ^0.13.4
   flutter_spinkit:
-  flutter_custom_carousel_slider: ^1.0.0
-  sliding_up_panel: ^2.0.0+1
+  flutter_custom_carousel_slider: ^1.2.0 
+  google_mobile_ads: ^1.2.0
+  flutter_riverpod: ^1.0.3
+  
 
 dev_dependencies:
   flutter_test:

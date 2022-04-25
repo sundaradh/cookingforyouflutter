@@ -1,6 +1,12 @@
 import 'dart:async';
+
+import 'package:cookingforyou/screens/login.dart';
+import 'package:cookingforyou/widgets/breakfast.dart';
 import 'package:cookingforyou/widgets/categoriesviews.dart';
 import 'package:cookingforyou/widgets/category.dart';
+import 'package:cookingforyou/widgets/khaja.dart';
+import 'package:cookingforyou/widgets/lunch.dart';
+
 import 'package:flutter_custom_carousel_slider/flutter_custom_carousel_slider.dart';
 import 'package:cookingforyou/model/recipe.api.dart';
 import 'package:cookingforyou/model/recipe.dart';
@@ -8,6 +14,7 @@ import 'package:cookingforyou/model/recipe.dart';
 import 'package:cookingforyou/widgets/recipe_card.dart';
 import 'package:cookingforyou/widgets/search.dart';
 import 'package:flutter/material.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
@@ -50,8 +57,7 @@ class _HomePageState extends State<HomePage> {
     ),
     CarouselItem(
       image: const NetworkImage(
-        'https://images.pexels.com/photos/2418486/pexels-photo-2418486.jpeg',
-      ),
+          'https://previews.123rf.com/images/golubovystock/golubovystock1703/golubovystock170300187/74823663-mezcla-de-carne-a-la-parrilla-y-salchichas-en-el-tablero-de-madera-surtido-de-deliciosa-comida-servi.jpg'),
       title: '@coskuncay published flutter_custom_carousel_slider!',
       titleTextStyle: const TextStyle(
         fontSize: 12,
@@ -117,7 +123,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final screen = [home(context), home(context), home(context)];
+    final screen = [home(context), category(context), Login()];
     recipes = List.from(recipes.reversed);
     return Scaffold(
       appBar: AppBar(
@@ -220,13 +226,13 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Color(0xFFA23522),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'favorite',
+            icon: Icon(Icons.category),
+            label: 'Category',
             backgroundColor: Color(0xFFA23522),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
+            icon: Icon(Icons.login),
+            label: 'Log In',
             backgroundColor: Color(0xFFA23522),
           ),
         ],
@@ -274,6 +280,125 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
       ],
+    );
+  }
+
+  Widget category(BuildContext context) {
+    return SingleChildScrollView(
+      child: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Container(
+                height: 170,
+                width: MediaQuery.of(context).size.width / 2,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Category()));
+                  },
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/dinner.jpg"),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: MediaQuery.of(context).size.width / 2,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Breakfast()));
+                  },
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/beakfast.png"),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 170,
+                width: MediaQuery.of(context).size.width / 2,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Lunch()));
+                  },
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/lunch.jpg"),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Container(
+                height: 170,
+                width: MediaQuery.of(context).size.width / 2,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const Khaja()));
+                  },
+                  child: Card(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/khaja.jpg"),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('About us'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text(
+                    'we mainly focused on user health by controlling calories and tasty food recipe guidance or instruction with user requirement in user interface of our pp we will provide some categories of food that user can easily select their food according to their requirement. also, this project provide access to user can contribute their recipe on application and user can review the app or specific recipe. Amin can upload the recipe video by providing YouTube link and user can watch the recipe by clicking the link that redirect YouTube video.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Ok'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
